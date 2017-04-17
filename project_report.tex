@@ -40,7 +40,7 @@ Philadelphia, PA}
 
 \section{Introduction and Problem definition}
 
-  E-sports is a rapidly growing market, with a burgeoning number of professional teams such as Evil Geniuses or Fnatic entering the field in games such as DOTA 2 or League of Legends to compete for multi-million dollar prize pools in online and offline competitions. With so much at stake, these professional teams spend a considerable amount of their time practicing and attempting to improve their skills. For instance, a typical day for a professional player would be to spend the morning playing a number of matches, then reviewing their video replays as a team in the afternoon. Similar to athletes in other sports, any improvements to the training process can yield significant impact on their success rates.
+  E-sports is a rapidly growing market, with a burgeoning number of professional teams such as Evil Geniuses \cite{EGwebsite} or Fnatic \cite{fnaticwebsite} entering the field in games such as DOTA 2 \cite{dotawebsite} or League of Legends \cite{lolwebsite} to compete for multi-million dollar prize pools in online and offline competitions. With so much at stake, these professional teams spend a considerable amount of their time practicing and attempting to improve their skills. For instance, based on our personal outreach to professional gamers, a typical day for a professional player would be to spend the morning playing a number of matches, then reviewing their video replays as a team in the afternoon. Similar to athletes in other sports, any improvements to the training process can yield significant impact on their success rates.
 
   However, despite the importance of such training and analysis time, the processes that teams use for these are often woefully inadequate. Unlike a conventional professional sporting team, e-sports teams are often decentralized in nature, with their members potentially being in completely different cities or countries for most of the year. Thus, any shared analysis time tends to rely on ad-hoc solutions. For example, a team might communicate via multiple screen shots edited with Microsoft Paint, or by manually communicating to each other the relevant video timings in a video replay. Such ad-hoc solutions slow down the analysis process and significantly increase the chance of a miscommunication, while making it difficult to remember the details of a previous analysis session.
 
@@ -79,7 +79,7 @@ Philadelphia, PA}
 
   The main web server of the platform is in charge of handling login and account registration processes. It is hosted using a custom server written in Go. It also allows the user to create rooms (each room is a single shared video instance) and invite friends and teammates to join the relevant room. All data is stored in an SQL database.
 
-  The synchronized video viewer is in charge of tracking changes to the video's state (play/pause, volume, current playback time) and sending them to the sync server (described below). It is built in JavaScript and React on top of the YouTube IFrame Player.
+  The synchronized video viewer is in charge of tracking changes to the video's state (play/pause, volume, current playback time) and sending them to the sync server (described below). It is built in JavaScript and React on top of the YouTube IFrame Player \cite{ytplayerwebsite}.
 
   The shared canvas provides a layer on top of the video which allows for annotations and drawings to be overlaid over the video. Any drawing or annotation made on the canvas is immediately synchronized with other clients via the sync server as well. It is also built in JavaScript and React.
 
@@ -136,14 +136,14 @@ s, of which the best choice was not initially clear. For instance, a small sampl
 
     Aside from the design decisions listed above, other parts of our project which we designed and implemented from scratch are described below.
 
-\subsection{Syncing Backend}
+\subsection{Synchronization backend}
 
     We home-brewed a publisher-subscriber system to handle the syncing of player states. In order to ensure a smooth user experience, the syncing servers maintained a direct connection between all users via WebSocket connection. Using WebSockets as our main communication channel ensures both speed (as opposed to a method such as long polling) and reliability in our communications. While a connectionless protocol such as UDP may be even faster (though less reliable), we are not able to make use of it via a web application, leaving WebSockets as the highest performance option available to a majority of web users.
 
     Each user that joins a room is assigned to a server that manages several rooms. This abstraction improves our scalability, as our system can assign new rooms to the least loaded (i.e. lowest user count or lowest activity) server.
 
 
-\subsection{Data Representation}
+\subsection{Data representation}
 
     Every room's state can be summarized into three main parts, the current list of users, the video state and the canvas state. Based on our current user case, neither the list of users nor the video state require any special optimizations to represent. For instance, when a new user joins, the back-end server just needs to send a message to all clients to update their list of active users.
 
@@ -157,7 +157,7 @@ s, of which the best choice was not initially clear. For instance, a small sampl
 
 
 \subsection{Instrumentation}
-    We used existing libraries such as stats.js as well as browser debuggers to measure our component's performance. To ensure the most fluid user experience, we need to render the canvas state at an average of 60fps. In figure 2 we benchmark the resting performance of our component when it is only rendering the video and any existing drawings. Averaging at 73.2 fps, we are well above the 60 fps baseline. In figure 3, we benchmark the active performance of our component when it is both rendering and updating state. This simulating heavy user load, which averages at 69.8 fps. Again, we float above the target fps despite the drop of 3.3 fps in average fps.
+    We used existing libraries such as stats.js \cite{statsjs} as well as browser debuggers to measure our component's performance. To ensure the most fluid user experience, we need to render the canvas state at an average of 60fps. In figure 2 we benchmark the resting performance of our component when it is only rendering the video and any existing drawings. Averaging at 73.2 fps, we are well above the 60 fps baseline. In figure 3, we benchmark the active performance of our component when it is both rendering and updating state. This simulating heavy user load, which averages at 69.8 fps. Again, we float above the target fps despite the drop of 3.3 fps in average fps.
 
     \begin{figure}[H]
       \centering
@@ -197,7 +197,7 @@ s, of which the best choice was not initially clear. For instance, a small sampl
       \label{fig:my_label}
     \end{figure}
 
-\subsection{User Feedback}
+\subsection{User feedback}
     We constructed a series of questions that we thought will give us the best understanding of how to iterate on our product. We then reached out to users and presented them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product were meant to gauge general user needs for the product. These included questions that addressed what challenges users might have in a certain area of collaborative work or video watching. We then presented post-demo questions that addressed what challenges users had with the product. This was a guided back and forth interview about how the product can be improved.
 
     In order to obtain unbiased feedback, our users were given a specific task but no further instruction as to how it would be executed. For example, we asked our users to create a new room from the home page and observed to see if there was any confusion in the UI that would make it unintuitive.
@@ -206,9 +206,10 @@ s, of which the best choice was not initially clear. For instance, a small sampl
 
     Two ethical concerns exist as our platform grows at scale. Though these concerns are important no matter of the scale, it would be more prominent as the scale grows.
 
-    First concern is on copyright issue of contents that are being streamed in each room. As users stream more contents, copyright of each content can be an issue. Though there are no functionality to directly detect copyright violation, since users have to provide the YouTube link of the video to stream it, any videos that became unavailable on YouTube due to copyright issues would not be able to be streamed on our platform.
+    First concern is on copyright issue of contents that are being streamed in each room. \cite{copyrightstream} As users stream more contents, copyright of each content can be an issue. Though there are no functionality to directly detect copyright violation, since users have to provide the YouTube link of the video to stream it, any videos that became unavailable on YouTube due to copyright issues would not be able to be streamed on our platform.
 
-    Second concern is regarding content of things written by viewers. Since users have unrestricted ability to use canvas system, content of things that can be written by users cannot be controlled. And as the number of users grow, there might be malicious usage of canvas functionality by some users. Our main approach here is to restrict the process for the users to join rooms so that any unidentified viewers cannot join the room. We are furthermore thinking of ways to restrict the ability of users to write on canvas, for instance, by limiting the amount of ink each user has.
+    Second concern is regarding content of things written by viewers. \cite{liabilitysite} Since users have unrestricted ability to use canvas system, content of things that can be written by users cannot be controlled. And as the number of users grow, there might be malicious usage of canvas functionality by some users. Our main approach here is to restrict the process for the users to join rooms so that any unidentified viewers cannot join the room. We are furthermore thinking of ways to restrict the ability of users to write on canvas, for instance, by limiting the amount of ink each user has.
+
 \section{Future work}
 
     While our current solution is fairly capable of solving the problem that we posed in the introduction, we foresee numerous improvements that can still be made, and hope to continue development in these areas. Based on suggestions by potential end-users, the following lists some potential steps that can be pursued.
@@ -269,11 +270,32 @@ We would like to thank our senior design advisor Professor Boon Thau Loo for the
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+\bibliographystyle{IEEEtranS}
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+  \bibitem{EGwebsite}
+    "Evil Geniuses". [Online]. Available: http://www.evilgeniuses.gg/. [Accessed: 17-Apr-2017].
+
+  \bibitem{fnaticwebsite}
+    "FNATIC.com". [Online]. Available: http://www.fnatic.com/. [Accessed: 17-Apr-2017].
+
+  \bibitem{dotawebsite}
+    "Dota 2". [Online]. Available: http://blog.dota2.com/. [Accessed: 17-Apr-2017].
+
+  \bibitem{lolwebsite}
+    "League of Legends". [Online]. Available: http://leagueoflegends.com/. [Accessed: 17-Apr-2017].
+
+  \bibitem{ytplayerwebsite}
+    "YouTube Player API Reference for iframe Embeds". [Online]. Available: https://developers.google.com/youtube/iframe\_api\_reference. [Accessed: 17-Apr-2017]. 
+
+  \bibitem{statsjs}
+    "stats.js". [Online]. Available: https://github.com/mrdoob/stats.js/. [Accessed: 17-Apr-2017].
+
+  \bibitem{copyrightstream}
+    "Copyright Law on Streaming PPV Events". [Online]. Available: http://info.legalzoom.com/copyright-law-streaming-ppv-events-21768.html. [Accessed: 17-Apr-2017].
+
+  \bibitem{liabilitysite}
+    Eric Goldman, "Website Provider Liability for User Content and Actions". [Online]. Available: http://www.ericgoldman.org/writings/websiteliabilityalert.htm. [Accessed: 17-Apr-2017].
 
 \end{thebibliography}
 
