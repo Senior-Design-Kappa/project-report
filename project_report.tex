@@ -40,9 +40,9 @@ Philadelphia, PA}
 
 \section{Introduction and Problem definition}
 
-  E-sports is a rapidly growing market, with a burgeoning number of professional teams such as Evil Geniuses or Fnatic entering the field in games such as DOTA 2 or League of Legends to compete for multi-million dollar prize pools in online and offline competitions. With so much at stake, these professional teams spend a considerable amount of their time practicing and attempting to improve their skills. For instance, a typical day for a professional player would be to spend the morning playing a number of matches, then reviewing their video replays as a team in the afternoon. Similar to athletes in other sports, any improvements to the training process can yield a significant impact on their success rates.
+  E-sports is a rapidly growing market, with a burgeoning number of professional teams such as Evil Geniuses or Fnatic entering the field in games such as DOTA 2 or League of Legends to compete for multi-million dollar prize pools in online and offline competitions. With so much at stake, these professional teams spend a considerable amount of their time practicing and attempting to improve their skills. For instance, a typical day for a professional player would be to spend the morning playing a number of matches, then reviewing their video replays as a team in the afternoon. Similar to athletes in other sports, any improvements to the training process can yield significant impact on their success rates.
 
-  However, despite the importance of such training and analysis time, the processes that teams use for these are often woefully inadequate. Unlike a conventional professional sporting team, e-sports teams are often decentralized in nature, with their members potentially being in completely different cities or countries for most of the year. Thus, any shared analysis time tends to rely on ad-hoc solutions. For example, a team might communicate via multiple screenshots edited with Microsoft Paint, or by manually communicating to each other the relevant video timings in a video replay. Such ad-hoc solutions slow down the analysis process and significantly increase the chance of a miscommunication, while making it difficult to remember the details of a previous analysis session.
+  However, despite the importance of such training and analysis time, the processes that teams use for these are often woefully inadequate. Unlike a conventional professional sporting team, e-sports teams are often decentralized in nature, with their members potentially being in completely different cities or countries for most of the year. Thus, any shared analysis time tends to rely on ad-hoc solutions. For example, a team might communicate via multiple screen shots edited with Microsoft Paint, or by manually communicating to each other the relevant video timings in a video replay. Such ad-hoc solutions slow down the analysis process and significantly increase the chance of a miscommunication, while making it difficult to remember the details of a previous analysis session.
 
 \section{Solution outline}
 
@@ -63,7 +63,7 @@ Philadelphia, PA}
 
       \item The team watches through the video. Actions such as fast-forwarding/rewinding, pausing/playing, volume changes, or changing the video or the video time are synchronized across all clients automatically.
 
-      \item The team also can draw or write annotations on the video. For example, a team member might circle a location inside the video of the game, while describing some strategic manoeuvre to his teammates. To do this, the relevant team member opens the drawing toolbar at the side of the video, then uses the provided tools to draw or write his annotations directly onto the video.
+      \item The team also can draw or write annotations on the video. For example, a team member might circle a location inside the video of the game, while describing some strategic maneuver to his teammates. To do this, the relevant team member opens the drawing tool bar at the side of the video, then uses the provided tools to draw or write his annotations directly onto the video.
 
       \item Once the team finishes the analysis session, they may wish to review any of the annotations made during that session at a later time, which they can do by opening up the "previous sessions" link on our platform.
   \end{enumerate}
@@ -103,7 +103,7 @@ Philadelphia, PA}
 
   Making use of the YouTube player rather than writing our own player enables users to more easily make use of existing video resources such as previously hosted YouTube videos. This not only leverages YouTube's high performance content delivery network across all users viewing the same video, but also makes it easy for teams to analyze video replays from other competitions or tournaments, which are frequently posted to YouTube.
 
-  The tradeoff for this decision is that we do not have the same granularity when tracking the video state, leading to minor delays in responsiveness of the synchronization. Unlike most of e-sports and gaming, video viewing and analysis are not heavily time-sensitive, thus we deemed this delay in response tolerable, as long as throughput and reliability were maintained.
+  The trade-off for this decision is that we do not have the same granularity when tracking the video state, leading to minor delays in responsiveness of the synchronization. Unlike most of e-sports and gaming, video viewing and analysis are not heavily time-sensitive, thus we deemed this delay in response tolerable, as long as throughput and reliability were maintained.
 
   Another minor trade-off was the development time needed to adapt our code to the new player. This was significantly mitigated by the modular design of our code. The video player was implemented in its own React component, allowing the change to be made quickly and efficiently with almost no impact on the rest of the code base.
 
@@ -198,7 +198,7 @@ s, of which the best choice was not initially clear. For instance, a small sampl
     \end{figure}
 
 \subsection{User Feedback}
-    We constructed a series of questions that we believe will give us the best understanding of how to iterate on our product. We then reach out to users and present them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product are meant to gauge general user needs for the product. These include questions that address what challenges users might have in a certain area of collaborative work or video watching. We then present post-demo questions that address what challenges users had with the product. This is a guided back and forth interview about how the product can be improved.
+    We constructed a series of questions that we thought will give us the best understanding of how to iterate on our product. We then reached out to users and presented them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product were meant to gauge general user needs for the product. These included questions that addressed what challenges users might have in a certain area of collaborative work or video watching. We then presented post-demo questions that addressed what challenges users had with the product. This was a guided back and forth interview about how the product can be improved.
 
     In order to obtain unbiased feedback, our users were given a specific task but no further instruction as to how it would be executed. For example, we asked our users to create a new room from the home page and observed to see if there was any confusion in the UI that would make it unintuitive.
 
