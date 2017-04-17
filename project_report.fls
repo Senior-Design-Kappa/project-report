@@ -1,0 +1,4 @@
+PWD C:/Users/danedaworld/Dropbox/workspace/go/src/github.com/Senior-Design-Kappa/project-report
+INPUT C:/Users/danedaworld/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
+INPUT project_report.tex
+OUTPUT project_report.log
