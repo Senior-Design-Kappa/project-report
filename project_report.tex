@@ -2,8 +2,8 @@
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
-
+\usepackage{graphicx}
+\usepackage{float}
 \begin{document}
 \title{Kappa: A Synchronized Video Viewer}
 
@@ -70,7 +70,12 @@ Philadelphia, PA}
 
 \subsection{Architecture}
 
-% TODO: insert image
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure1.PNG}
+      \caption{Architecture Layout}
+      \label{fig:my_label}
+  \end{figure}
 
   The main web server of the platform is in charge of handling login and account registration processes. It is hosted using a custom server written in Go. It also allows the user to create rooms (each room is a single shared video instance) and invite friends and teammates to join the relevant room. All data is stored in an SQL database.
 
@@ -149,12 +154,48 @@ s, of which the best choice was not initially clear. For instance, a small sampl
 \section{Evaluation of solution}
     Over the course of this project, every iteration is preceded and followed by a series of feedback from external sources. Since the project is created with users in mind, we wanted to ensure that our work is guided by their input. Additionally, there is an equal emphasis on performance since our product is highly interactive. Therefore, the project has the following metrics for success: instrumentation on the front-end for latency, user evaluation, and constructive feedback. Note that the data is gathered on a Windows 10 Intel Core i7-6700K @ 4.00 GHz with a AMD Radeon R9 Fury Series.
 
+
+
 \subsection{Instrumentation}
-    We used existing libraries such as stats.js as well as browser debuggers to measure our component's performance. To ensure the most fluid user experience, we need to render the canvas state at an average of 60fps. In figure 2a we benchmark the resting performance of our component when it is only rendering the video and any existing drawings. Averaging at 73.2 fps, we are well above the 60 fps baseline. In figure 2b, we benchmark the active performance of our component when it is both rendering and updating state. This simulating heavy user load, which averages at 69.8 fps. Again, we float above the target fps despite the drop of 3.3 fps in average fps.
+    We used existing libraries such as stats.js as well as browser debuggers to measure our component's performance. To ensure the most fluid user experience, we need to render the canvas state at an average of 60fps. In figure 2 we benchmark the resting performance of our component when it is only rendering the video and any existing drawings. Averaging at 73.2 fps, we are well above the 60 fps baseline. In figure 3, we benchmark the active performance of our component when it is both rendering and updating state. This simulating heavy user load, which averages at 69.8 fps. Again, we float above the target fps despite the drop of 3.3 fps in average fps.
 
-    We experimented with various payload representation and sizes. In one variation, we would send over a list of changed pixels, whereas in another, we sent over line segments (a pair of Cartesian coordinates) and defer calculation to the client. In figure 3a and 3b, we benchmark each result to determine which protocol to ultimately settle on. It turns out that the overall cost incurred by the size and computation trade-off is insignificant when compared to the cost of simply streaming and decoding video. Thus the representation was inconsequential and we decided to use list of changed pixels for simplicity.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure2a.PNG}
+      \caption{}
+      \label{fig:my_label}
+    \end{figure}
 
-    The final metric we used to determine performance is network response time. We simply measured the time it took for a change to reflect on another machine. In this case, we consider the joint timing of both the canvas state as well as the video state and take the longest of both times. Figure 4 shows the latencies over 10 separate requests.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure2b.PNG}
+      \caption{}
+      \label{fig:my_label}
+    \end{figure}
+
+    We experimented with various payload representation and sizes. In one variation, we would send over a list of changed pixels, whereas in another, we sent over line segments (a pair of Cartesian coordinates) and defer calculation to the client. In figure 4 and 5, we benchmark each result to determine which protocol to ultimately settle on. It turns out that the overall cost incurred by the size and computation trade-off is insignificant when compared to the cost of simply streaming and decoding video. Thus the representation was inconsequential and we decided to use list of changed pixels for simplicity.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure3a.PNG}
+      \caption{}
+      \label{fig:my_label}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure3b.PNG}
+      \caption{}
+      \label{fig:my_label}
+    \end{figure}
+
+    The final metric we used to determine performance is network response time. We simply measured the time it took for a change to reflect on another machine. In this case, we consider the joint timing of both the canvas state as well as the video state and take the longest of both times. Figure 6 shows the latencies over 10 separate requests.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{figure4.PNG}
+      \caption{}
+      \label{fig:my_label}
+    \end{figure}
 
 \subsection{User Feedback}
     We construct a series of questions that we believe will give us the best understanding of how to iterate on our product. We then reach out to users and present them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product are meant to gauge general user needs for the product. These include questions that address what challenges users might have in a certain area of collaborative work or video watching. We then present post-demo questions that address what challenges users had with the product. This is a guided back and forth interview about how the product can be improved.
