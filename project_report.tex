@@ -198,19 +198,24 @@ s, of which the best choice was not initially clear. For instance, a small sampl
     \end{figure}
 
 \subsection{User Feedback}
-    We construct a series of questions that we believe will give us the best understanding of how to iterate on our product. We then reach out to users and present them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product are meant to gauge general user needs for the product. These include questions that address what challenges users might have in a certain area of collaborative work or video watching. We then present post-demo questions that address what challenges users had with the product. This is a guided back and forth interview about how the product can be improved.
+    We constructed a series of questions that we believe will give us the best understanding of how to iterate on our product. We then reach out to users and present them with a series of questions prior to using the product and after using them. The series of questions given prior to using the product are meant to gauge general user needs for the product. These include questions that address what challenges users might have in a certain area of collaborative work or video watching. We then present post-demo questions that address what challenges users had with the product. This is a guided back and forth interview about how the product can be improved.
 
     In order to obtain unbiased feedback, our users were given a specific task but no further instruction as to how it would be executed. For example, we asked our users to create a new room from the home page and observed to see if there was any confusion in the UI that would make it unintuitive.
 
 \section{Implications of Project}
 
+    Two ethical concerns exist as our platform grows at scale. Though these concerns are important no matter of the scale, it would be more prominent as the scale grows.
+
+    First concern is on copyright issue of contents that are being streamed in each room. As users stream more contents, copyright of each content can be an issue. Though there are no functionality to directly detect copyright violation, since users have to provide the YouTube link of the video to stream it, any videos that became unavailable on YouTube due to copyright issues would not be able to be streamed on our platform.
+
+    Second concern is regarding content of things written by viewers. Since users have unrestricted ability to use canvas system, content of things that can be written by users cannot be controlled. And as the number of users grow, there might be malicious usage of canvas functionality by some users. Our main approach here is to restrict the process for the users to join rooms so that any unidentified viewers cannot join the room. We are furthermore thinking of ways to restrict the ability of users to write on canvas, for instance, by limiting the amount of ink each user has.
 \section{Future work}
 
     While our current solution is fairly capable of solving the problem that we posed in the introduction, we foresee numerous improvements that can still be made, and hope to continue development in these areas. Based on suggestions by potential end-users, the following lists some potential steps that can be pursued.
 
 \subsection{Front-end development}
 
-    Simple tweaks that would improve the experience include the addition of even more annotation and drawing tools, to allow users to have a greater variety of methods to communicate important information to their teammates. Additional communication channels such as built-in voice chat would also improve the user experience by removing the need to use third-party tools for this while on our platform.
+    Simple tweaks that would improve the experience including the addition of even more annotation and drawing tools, to allow users to have a greater variety of methods to communicate important information to their teammates. Additional communication channels such as built-in voice chat would also improve the user experience by removing the need to use third-party tools for this while on our platform.
 
 \subsection{Back-end development}
 
